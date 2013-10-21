@@ -506,6 +506,11 @@ function facetapi_facet_load($facet_name, $searcher) {
  *     FALSE if they should be skipped.
  */
 function facetapi_get_searcher_info() {
+  $searcher_info = &drupal_static(__FUNCTION__, NULL);
+  if (isset($searcher_info)) {
+    return $searcher_info;
+  }
+
   $searcher_info = array();
   foreach (module_implements('facetapi_searcher_info') as $module) {
     // Iterates over the module's searcher definition.
