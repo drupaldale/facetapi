@@ -889,13 +889,23 @@ abstract class FacetapiAdapter {
   /**
    * Returns a FacetapiFacet instance for the facet being rendered.
    *
-   * @param array $facet
+   * @param $facet
    *   The facet definition as returned by facetapi_facet_load().
    *
    * @return FacetapiFacet
    *   The facet rendering object object.
    */
-  public function getFacet(array $facet) {
+  public function getFacet($facet) {
+    // if $facet is not an array, then only return if cached
+    if(!is_array($facet)) {
+      if (isset($this->facets[$facet])) {
+        return $this->facets[$facet];
+      }
+      else {
+        throw new Exception("getFacet can only be called with string if facet \
+          is already cached");
+      }
+    }
     if (!isset($this->facets[$facet['name']])) {
       $this->facets[$facet['name']] = new FacetapiFacet($this, $facet);
     }
