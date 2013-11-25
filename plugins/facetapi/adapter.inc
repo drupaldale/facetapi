@@ -243,8 +243,6 @@ abstract class FacetapiAdapter {
    */
   public function initUrlProcessor() {
     $params = $this->urlProcessor->fetchParams();
-    dpm($this->urlProcessor);
-    dpm($params);
     $filter_key = $this->urlProcessor->getFilterKey();
     $this->setParams($params, $filter_key);
   }
