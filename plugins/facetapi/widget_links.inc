@@ -106,6 +106,7 @@ class FacetapiWidgetLinks extends FacetapiWidget {
           'attributes' => $attributes,
           'html' => $item['#html'],
           'query' => $item['#query'],
+          'fragment' => $item['#fragment'],
         ),
       );
 
